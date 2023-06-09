@@ -5,6 +5,7 @@ set(PROJECT_ID snake)
 
 set(SOURCE_FILES
         src/snake.cpp
+        src/function.cpp
         )
 
 set(SOURCES_FILES_TESTS

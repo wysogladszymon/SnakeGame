@@ -1,6 +1,8 @@
 #ifndef INCLUDE_SNAKE_HPP_
 #define INCLUDE_SNAKE_HPP_
 
+#include "../include/function.hpp"
+
 #include <cstddef>
 #include <vector>
 #include <string>
@@ -22,18 +24,20 @@ private:
 
 class Snake {
 public:
-    Snake(int dlugosc = 1) : dlugosc_(dlugosc) {};
-    void set_size(int dl) {dlugosc_ = dl;};
+    Snake(int dlugosc = 1,int glowax = 0, int gloway= 0, int ogonx= 0, int ogony= 0) : dlugosc_(dlugosc), x_(glowax), y_(gloway) ,x_k(ogonx) ,y_k(ogony) {};
+    void size(int dl) {dlugosc_ = dl;};
     int size() const {return dlugosc_;};
-    void set_x(int x) {x_ = x;};
-    void set_y(int y) {y_ = y;};
-    int start_x(){return x_;};
-    int start_y(){return y_;};
-    int end_x(){return x_k;};
-    int end_y(){return y_k;};
-    void set_endx(int x) {x_k = x;};
-    void set_endy(int y) {y_k = y;};
-
+    void head_x(int x) {x_ = x;};
+    void head_y(int y) {y_ = y;};
+    int head_x() const {return x_;};
+    int head_y() const {return y_;};
+    void tail_x(int x) {x_k = x;};
+    void tail_y(int y) {y_k = y;};
+    int tail_x() const {return x_k;};
+    int tail_y() const {return y_k;};
+    void usun_ogon();
+    void rysuj_glowe();
+    void head_both(int x, int y) { x_ = x; y_ = y;};
 private:
     int dlugosc_, x_, y_ ,x_k ,y_k;
 };

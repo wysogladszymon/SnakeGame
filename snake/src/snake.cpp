@@ -21,3 +21,15 @@ void Plansza::rysuj(){
     std::cout<< char(188);
 }
 
+void Snake::usun_ogon()
+{
+    idzdoxy(x_k * 2 + 1 , y_k + 1);
+    std::cout<<" ";
+}
+
+void Snake::rysuj_glowe()
+{
+    idzdoxy(x_ * 2 + 1, y_ + 1);
+    std::cout<<"0";
+}
+
