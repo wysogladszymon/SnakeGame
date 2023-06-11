@@ -23,8 +23,8 @@ void Plansza::rysuj(){
 
 void Snake::usun_ogon()
 {
-    idzdoxy(x_k * 2 + 1 , y_k + 1);
-    std::cout<<" ";
+    idzdoxy(x_k * 2 + 1, y_k + 1);
+    std::cout<<"  ";
 }
 
 void Snake::rysuj_glowe()

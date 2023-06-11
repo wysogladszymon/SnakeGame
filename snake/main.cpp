@@ -11,7 +11,7 @@ int main() {
     int szerokosc = 10;
     int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
     int jedzeniex, jedzeniey;
-    char klawisz;
+    char klawisz , newkierunek;
     char kierunek = 'p';                //p - prawo, l - lewo, g - gora, d - dol
     std::vector<int> historiax;
     std::vector<int>historiay;
@@ -26,30 +26,53 @@ int main() {
     //oczyszczenie ekranu
     system("Cls");
 
-    Plansza plansza(szerokosc,wysokosc);
+    Plansza plansza(szerokosc ,wysokosc );
     plansza.rysuj();
 
     a = losowanie(szerokosc);
     b = losowanie(wysokosc);
     // inicjalizacja i losowanie poczatkowego ustawienia węża
-    Snake wonsz(1,a,b,a-1,b);
+    Snake wonsz(1,a,b,a,b);
 
-    //oznaczenie w tablicy miejsca węża
-    pole[wonsz.head_y()][wonsz.head_x()] = 2;
 
     //losowanie poczatkowego pola jedzenia
     do
     {
         jedzeniex = losowanie(szerokosc);
         jedzeniey = losowanie(wysokosc);
-    }while (pole[jedzeniey][jedzeniex] == 2);
+    }while (jedzeniex == a && jedzeniey == b);
 
-    idzdoxy(jedzeniex*2+1, jedzeniey+1);
+    idzdoxy(jedzeniex*2 + 1, jedzeniey+1);
     std::cout<<'x';
 
+    //narysowanie wyniku
+    idzdoxy(2, wysokosc + 2);
+    std::cout<<"SCORE: "<< wonsz.size();
+
     //petla gry
-    while (pole[wonsz.head_x()][wonsz.head_y()] != 2 )
+    while (pole[wonsz.head_y()][wonsz.head_x()] != 2 )
     {
+    //narysowanie glowy oraz ustawienie pola w tablicy, aby oznaczyc lokalizacje weza
+        pole[wonsz.head_y()][wonsz.head_x()] = 2;
+        wonsz.rysuj_glowe();
+
+        //instrukcja co zrobic gdy waz zje jedzenie
+        if(pole[jedzeniey][jedzeniex] == 2)
+            wonsz.size(wonsz.size() + 1);
+
+
+        Sleep(500);
+
+        //zapisanie w histori petli wspolrzednych glowy
+        historiax.push_back(wonsz.head_x());
+        historiay.push_back(wonsz.head_y());
+
+        //wpisanie i usuniecie ogona
+        wonsz.tail_x(historiax[historiax.size() - wonsz.size()]);
+        wonsz.tail_y(historiay[historiay.size() - wonsz.size()]);
+        wonsz.usun_ogon();
+        pole[wonsz.tail_y()][wonsz.tail_x()] = 0;
+
 
         //uzaeleznienie kierunku w zaleznosci od przycisku
         if(_kbhit())
@@ -59,19 +82,23 @@ int main() {
             {
                 case 87:
                 case 119:
-                    kierunek = 'g';
+                    if (kierunek != 'd')
+                        kierunek = 'g';
                     break;
                 case 83:
                 case 115:
-                    kierunek = 'd';
+                    if (kierunek != 'g')
+                        kierunek = 'd';
                     break;
                 case 68:
                 case 100:
-                    kierunek = 'p';
+                    if (kierunek != 'l')
+                        kierunek = 'p';
                     break;
                 case 65:
                 case 97:
-                    kierunek = 'l';
+                    if (kierunek != 'p')
+                        kierunek = 'l';
                     break;
                 default:
                     break;
@@ -94,46 +121,36 @@ int main() {
                 wonsz.head_both(wonsz.head_x()-1, wonsz.head_y());
                 break;
         }
+
         //ustawienie wspolrzednych weza, aby miescily sie w polu gry
         wonsz.head_x((wonsz.head_x()+szerokosc)%szerokosc);
-        wonsz.tail_x((wonsz.tail_x()+szerokosc)%szerokosc);
-        wonsz.head_y((wonsz.head_y()+wysokosc)%wysokosc);
-        wonsz.tail_y((wonsz.tail_y()+wysokosc)%wysokosc);
-
-        //narysowanie glowy oraz ustawienie pola w tablicy, aby oznaczyc lokalizacje weza
-        pole[wonsz.head_y()][wonsz.head_x()] = 2;
-        wonsz.rysuj_glowe();
-
-        //zapisanie w histori petli wspolrzednych glowy
-        historiax.push_back(wonsz.head_x());
-        historiay.push_back(wonsz.head_y());
-
-        Sleep(1000);
-
-        //instrukcja co zrobic gdy waz zje jedzenie
-        if(pole[jedzeniey][jedzeniex] == 2)
-            wonsz.size(wonsz.size() + 1);
-
-        //ustawienie wspolrzednych konca
-        wonsz.tail_x(historiax[historiax.size() - wonsz.size()]);
-        wonsz.tail_y(historiay[historiay.size() - wonsz.size()]);
-        wonsz.usun_ogon();
-        pole[wonsz.tail_y()][wonsz.tail_x()] = 0;
+        wonsz.head_y((wonsz.head_y()+wysokosc)%wysokosc );
 
 
-
-        while (pole[jedzeniey][jedzeniex] == 2)
+        //instrukcja gdy waz zje jedzenie
+        if (pole[jedzeniey][jedzeniex] == 2)
         {
-            jedzeniex = losowanie(szerokosc);
-            jedzeniey = losowanie(wysokosc);
+            //ustawienie wyniku
+            idzdoxy(9, wysokosc + 2);
+            std::cout<<wonsz.size();
+
+            //losowanie nowego pola jedzenia
+            while (pole[jedzeniey][jedzeniex] == 2)
+            {
+                jedzeniex = losowanie(szerokosc);
+                jedzeniey = losowanie(wysokosc);
+            }
+            idzdoxy(jedzeniex * 2 + 1 , jedzeniey+1);
+            std::cout<<'x';
+
         }
-        idzdoxy(jedzeniex*2+1, jedzeniey+1);
-        std::cout<<'x';
+
 
     }
 
-    Sleep(1000);
-
-    idzdoxy((2*szerokosc-10)/2, wysokosc + 2);
-    std::cout<<"KONIEC GRY";
+    idzdoxy((2*szerokosc-9)/ 2, wysokosc / 2 );
+    std::cout<<"GAME OVER" <<std::endl;
+    std::cout<< char(186) <<"  Press ENTER to Quit";
+c
+    getch();
 }
