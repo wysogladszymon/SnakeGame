@@ -7,8 +7,8 @@
 
 int main() {
     int a, b;
-    int wysokosc = 25;
-    int szerokosc = 25;
+    int wysokosc;
+    int szerokosc;
     int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
     int jedzeniex, jedzeniey;
     char klawisz, newkierunek;
