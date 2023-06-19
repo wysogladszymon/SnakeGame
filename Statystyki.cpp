@@ -9,7 +9,7 @@ void wyswietlStatystyki() {
         while (getline(plik, linia)) {
             std::cout << linia << std::endl;
         }
-        plik.close();
+        plik.close(); 
     } else {
         std::cout << "Nie można otworzyć pliku ze statystykami." << std::endl;
     }
@@ -44,6 +44,8 @@ void odblokujOsiagniecie(const std::string& nazwa) {
         plik << "Odblokowano osiągnięcie: " << nazwa << std::endl;
         plik.close();
     } else {
+        
+        
         std::cout << "Nie można zapisać osiągnięcia." << std::endl;
     }
 }
