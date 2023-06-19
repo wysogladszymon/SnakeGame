@@ -50,3 +50,20 @@ void odblokujOsiagniecie(const std::string& nazwa) {
     }
 }
 
+// przykladowe uzycie programu 
+
+int main() {
+    // Przykład zapisu statystyk
+    int wynik = 50;
+    zapiszStatystyki(wynik);
+
+    // Przykład odblokowania osiągnięcia
+    std::string nazwaOsiagniecia = "Super Gracz";
+    odblokujOsiagniecie(nazwaOsiagniecia);
+
+    // Wyświetlanie statystyk i osiągnięć
+    wyswietlStatystyki();
+    wyswietlOsiagniecia();
+
+    return 0;
+}
