@@ -29,25 +29,25 @@ public:
     Snake(int dlugosc = 1, int glowax = 0, int gloway = 0, int ogonx = 0, int ogony = 0, char pole = '0') : dlugosc_(
             dlugosc), x_(glowax), y_(gloway), x_k(ogonx), y_k(ogony), pole_(pole) {};
 
-    void set_size(int dl) { dlugosc_ = dl; };
+    void size(int dl) { dlugosc_ = dl; };
 
-    int get_size() const { return dlugosc_; };
+    int size() const { return dlugosc_; };
 
-    void set_head_X(int x) { x_ = x; };
+    void head_x(int x) { x_ = x; };
 
-    void set_head_Y(int y) { y_ = y; };
+    void head_y(int y) { y_ = y; };
 
-    int get_head_X() const { return x_; };
+    int head_y() const { return x_; };
 
-    int get_head_Y() const { return y_; };
+    int head_y() const { return y_; };
 
-    void set_tail_X(int x) { x_k = x; };
+    void tail_x(int x) { x_k = x; };
 
-    void set_tail_Y(int y) { y_k = y; };
+    void tail_y(int y) { y_k = y; };
 
-    int get_tail_X() const { return x_k; };
+    int tail_x() const { return x_k; };
 
-    int get_tail_Y() const { return y_k; };
+    int tail_x() const { return y_k; };
 
     void usun_ogon();
 
