@@ -113,7 +113,7 @@ int main() {
     {
     //narysowanie glowy oraz ustawienie pola w tablicy, aby oznaczyc lokalizacje weza
         pole[wonsz.head_y()][wonsz.head_x()] = 2;
-        wonsz.rysuj_glowe();
+        wonsz.rysuj_glowe(Snake.symbol);
 
 
 
