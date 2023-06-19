@@ -47,7 +47,7 @@ int main() {
 
     //narysowanie wyniku
     idzdoxy(2, wysokosc + 2);
-    std::cout<<"SCORE: "<< wonsz.size();
+    std::cout<<"SCORE: "<< wonsz.get_size();
 
     //petla gry
     while (pole[wonsz.get_head_Y()][wonsz.get_head_X()] != 2 )
@@ -58,7 +58,7 @@ int main() {
 
         //instrukcja co zrobic gdy waz zje jedzenie
         if(pole[jedzeniey][jedzeniex] == 2)
-            wonsz.size(wonsz.size() + 1);
+            wonsz.set_size(wonsz.get_size() + 1);
 
 
         Sleep(200);
@@ -68,8 +68,8 @@ int main() {
         historiay.push_back(wonsz.get_head_Y());
 
         //wpisanie i usuniecie ogona
-        wonsz.set_tail_X(historiax[historiax.size() - wonsz.size()]);
-        wonsz.set_tail_Y(historiay[historiay.size() - wonsz.size()]);
+        wonsz.set_tail_X(historiax[historiax.size() - wonsz.get_size()]);
+        wonsz.set_tail_Y(historiay[historiay.size() - wonsz.get_size()]);
         wonsz.usun_ogon();
         pole[wonsz.get_tail_Y()][wonsz.get_tail_X()] = 0;
 
@@ -132,7 +132,7 @@ int main() {
         {
             //ustawienie wyniku
             idzdoxy(9, wysokosc + 2);
-            std::cout<<wonsz.size();
+            std::cout<<wonsz.get_size();
 
             //losowanie nowego pola jedzenia
             while (pole[jedzeniey][jedzeniex] == 2)

@@ -25,8 +25,8 @@ private:
 class Snake {
 public:
     Snake(int dlugosc = 1,int glowax = 0, int gloway= 0, int ogonx= 0, int ogony= 0, char pole= '0') : dlugosc_(dlugosc), x_(glowax), y_(gloway) ,x_k(ogonx) ,y_k(ogony), pole_(pole) {};
-    void size(int dl) {dlugosc_ = dl;};
-    int size() const {return dlugosc_;};
+    void set_size(int dl) {dlugosc_ = dl;};
+    int get_size() const {return dlugosc_;};
     void set_head_X(int x) { x_ = x;};
     void set_head_Y(int y) { y_ = y;};
     int get_head_X() const {return x_;};
