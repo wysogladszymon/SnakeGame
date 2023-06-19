@@ -51,7 +51,7 @@ public:
 
     void usun_ogon();
 
-    void rysuj_glowe();
+    void rysuj_glowe(char symbol);
 
     void head_both(int x, int y) {
         x_ = x;
@@ -64,6 +64,7 @@ public:
 private:
     int dlugosc_, x_, y_, x_k, y_k;
     char pole_;
+    char symbol;
 };
 
 #endif
