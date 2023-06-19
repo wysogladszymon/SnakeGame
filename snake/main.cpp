@@ -6,58 +6,56 @@
 
 
 int main() {
-    int a,b;
+    int a, b;
     int wysokosc = 25;
     int szerokosc = 25;
     int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
     int jedzeniex, jedzeniey;
-    char klawisz , newkierunek;
+    char klawisz, newkierunek;
     char kierunek = 'p';                //p - prawo, l - lewo, g - gora, d - dol
     std::vector<int> historiax;
-    std::vector<int>historiay;
+    std::vector<int> historiay;
 
     srand(time(nullptr)); // reset generatora liczb pseudolosowych
 
     //ustawienie tablicy samymi pustymi polami
-    for (int i = 0; i < wysokosc;i++ )
-        for(int j = 0; j < szerokosc ; j++)
+    for (int i = 0; i < wysokosc; i++)
+        for (int j = 0; j < szerokosc; j++)
             pole[i][j] = 0;
 
     //oczyszczenie ekranu
     system("Cls");
 
-    Plansza plansza(szerokosc ,wysokosc );
+    Plansza plansza(szerokosc, wysokosc);
     plansza.rysuj();
 
     a = losowanie(szerokosc);
     b = losowanie(wysokosc);
     // inicjalizacja i losowanie poczatkowego ustawienia węża
-    Snake wonsz(1,a,b,a,b);
+    Snake wonsz(1, a, b, a, b);
 
 
     //losowanie poczatkowego pola jedzenia
-    do
-    {
+    do {
         jedzeniex = losowanie(szerokosc);
         jedzeniey = losowanie(wysokosc);
-    }while (jedzeniex == a && jedzeniey == b);
+    } while (jedzeniex == a && jedzeniey == b);
 
-    idzdoxy(jedzeniex*2 + 1, jedzeniey+1);
-    std::cout<<'x';
+    idzdoxy(jedzeniex * 2 + 1, jedzeniey + 1);
+    std::cout << 'x';
 
     //narysowanie wyniku
     idzdoxy(2, wysokosc + 2);
-    std::cout<<"SCORE: "<< wonsz.get_size();
+    std::cout << "SCORE: " << wonsz.get_size();
 
     //petla gry
-    while (pole[wonsz.get_head_Y()][wonsz.get_head_X()] != 2 )
-    {
-    //narysowanie glowy oraz ustawienie pola w tablicy, aby oznaczyc lokalizacje weza
+    while (pole[wonsz.get_head_Y()][wonsz.get_head_X()] != 2) {
+        //narysowanie glowy oraz ustawienie pola w tablicy, aby oznaczyc lokalizacje weza
         pole[wonsz.get_head_Y()][wonsz.get_head_X()] = 2;
         wonsz.rysuj_glowe();
 
         //instrukcja co zrobic gdy waz zje jedzenie
-        if(pole[jedzeniey][jedzeniex] == 2)
+        if (pole[jedzeniey][jedzeniex] == 2)
             wonsz.set_size(wonsz.get_size() + 1);
 
 
@@ -75,11 +73,9 @@ int main() {
 
 
         //uzaeleznienie kierunku w zaleznosci od przycisku
-        if(_kbhit())
-        {
+        if (_kbhit()) {
             klawisz = getch();
-            switch (klawisz)
-            {
+            switch (klawisz) {
                 case 87:
                 case 119:
                     if (kierunek != 'd')
@@ -106,8 +102,7 @@ int main() {
         }
 
         //poruszanie w zaleznosci od kierunku
-        switch(kierunek)
-        {
+        switch (kierunek) {
             case 'g':
                 wonsz.head_both(wonsz.get_head_X(), wonsz.get_head_Y() - 1);
                 break;
@@ -128,29 +123,27 @@ int main() {
 
 
         //instrukcja gdy waz zje jedzenie
-        if (pole[jedzeniey][jedzeniex] == 2)
-        {
+        if (pole[jedzeniey][jedzeniex] == 2) {
             //ustawienie wyniku
             idzdoxy(9, wysokosc + 2);
-            std::cout<<wonsz.get_size();
+            std::cout << wonsz.get_size();
 
             //losowanie nowego pola jedzenia
-            while (pole[jedzeniey][jedzeniex] == 2)
-            {
+            while (pole[jedzeniey][jedzeniex] == 2) {
                 jedzeniex = losowanie(szerokosc);
                 jedzeniey = losowanie(wysokosc);
             }
-            idzdoxy(jedzeniex * 2 + 1 , jedzeniey+1);
-            std::cout<<'x';
+            idzdoxy(jedzeniex * 2 + 1, jedzeniey + 1);
+            std::cout << 'x';
 
         }
 
 
     }
 
-    idzdoxy((2*szerokosc-9)/ 2, wysokosc / 2 );
-    std::cout<<"GAME OVER" <<std::endl;
-    std::cout<< char(186) <<"  Press ENTER to Quit";
+    idzdoxy((2 * szerokosc - 9) / 2, wysokosc / 2);
+    std::cout << "GAME OVER" << std::endl;
+    std::cout << char(186) << "  Press ENTER to Quit";
 
     getch();
 }
