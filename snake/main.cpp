@@ -6,15 +6,16 @@
 
 
 int main() {
-    int a, b;
+    int a,b;
     int wysokosc;
     int szerokosc;
-    int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
+
     int jedzeniex, jedzeniey;
-    char klawisz, newkierunek;
+    char klawisz ;
     char kierunek = 'p';                //p - prawo, l - lewo, g - gora, d - dol
     std::vector<int> historiax;
-    std::vector<int> historiay;
+    std::vector<int>historiay;
+    int level;                          //zmienna ustalająca poziom gry
 
     srand(time(nullptr)); // reset generatora liczb pseudolosowych
 
