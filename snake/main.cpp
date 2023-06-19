@@ -7,8 +7,8 @@
 
 int main() {
     int a,b;
-    int wysokosc = 10;
-    int szerokosc = 10;
+    int wysokosc = 25;
+    int szerokosc = 25;
     int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
     int jedzeniex, jedzeniey;
     char klawisz , newkierunek;
@@ -61,7 +61,7 @@ int main() {
             wonsz.size(wonsz.size() + 1);
 
 
-        Sleep(500);
+        Sleep(200);
 
         //zapisanie w histori petli wspolrzednych glowy
         historiax.push_back(wonsz.head_x());
