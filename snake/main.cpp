@@ -123,8 +123,8 @@ int main() {
         }
 
         //ustawienie wspolrzednych weza, aby miescily sie w polu gry
-        wonsz.head_x((wonsz.get_head_X() + szerokosc) % szerokosc);
-        wonsz.head_y((wonsz.get_head_Y() + wysokosc) % wysokosc );
+        wonsz.set_head_X((wonsz.get_head_X() + szerokosc) % szerokosc);
+        wonsz.set_head_Y((wonsz.get_head_Y() + wysokosc) % wysokosc);
 
 
         //instrukcja gdy waz zje jedzenie
