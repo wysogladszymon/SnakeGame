@@ -75,7 +75,10 @@ int main() {
 
         //uzaeleznienie kierunku w zaleznosci od przycisku
         if (_kbhit()) {
-            klawisz = getch();
+             //dodanie pauzy;
+            klawisz = _getch();
+            if (klawisz == 80 || klawisz == 112)
+                klawisz = _getch();
             switch (klawisz) {
                 case 87:
                 case 119:
