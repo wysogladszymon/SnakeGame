@@ -1,7 +1,7 @@
 #ifndef INCLUDE_SNAKE_HPP_
 #define INCLUDE_SNAKE_HPP_
 
-#include "../include/function.hpp"
+#include "function.hpp"
 
 #include <cstddef>
 #include <vector>

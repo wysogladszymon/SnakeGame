@@ -1,4 +1,4 @@
-#include "snake.hpp"
+#include "../include/snake.hpp"
 
 void Plansza::rysuj(){
     //rysowanie góry ramki

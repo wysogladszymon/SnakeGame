@@ -1,5 +1,4 @@
 #include "include/snake.hpp"
-#include "include/function.hpp"
 
 #include <cstdlib>
 #include <string>
@@ -7,21 +6,50 @@
 
 int main() {
     int a,b;
-    int wysokosc = 25;
-    int szerokosc = 25;
-    int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
+    int wysokosc = 10;
+    int szerokosc = 10;
+
     int jedzeniex, jedzeniey;
-    char klawisz , newkierunek;
+    char klawisz ;
     char kierunek = 'p';                //p - prawo, l - lewo, g - gora, d - dol
     std::vector<int> historiax;
     std::vector<int>historiay;
+    int level;                          //zmienna ustalająca poziom gry
 
     srand(time(nullptr)); // reset generatora liczb pseudolosowych
 
+    //menu kontekstowe wyboru przez gracza odpowiednich parametrów
+    std::cout<< "Podaj wymiar planszy"<<std::endl;
+    std::cin >> szerokosc;
+
+    //zabezpieczenie przed za malym wymiarem
+    if (szerokosc < 10)
+    {
+        szerokosc = 10;
+    }
+
+    //zabezpieczenie przed zbyt duzym wymiarem
+    if (szerokosc > 70)
+    {
+        szerokosc = 70;
+    }
+    szerokosc = wysokosc;
+
+    //poziom gry
+    std::cout << "Podaj w skali 1-3 poziom trudnosci";
+    std::cin >> level;
+
+    if(level<1)
+        level = 1;
+    if (level>3)
+        level = 3;
+
+    int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
     //ustawienie tablicy samymi pustymi polami
     for (int i = 0; i < wysokosc;i++ )
         for(int j = 0; j < szerokosc ; j++)
             pole[i][j] = 0;
+
 
     //oczyszczenie ekranu
     system("Cls");
@@ -31,7 +59,8 @@ int main() {
 
     a = losowanie(szerokosc);
     b = losowanie(wysokosc);
-    // inicjalizacja i losowanie poczatkowego ustawienia węża
+
+    // inicjalizacja
     Snake wonsz(1,a,b,a,b);
 
 
@@ -61,7 +90,7 @@ int main() {
             wonsz.size(wonsz.size() + 1);
 
 
-        Sleep(200);
+        Sleep(1000/szerokosc / level);
 
         //zapisanie w histori petli wspolrzednych glowy
         historiax.push_back(wonsz.head_x());
@@ -77,7 +106,11 @@ int main() {
         //uzaeleznienie kierunku w zaleznosci od przycisku
         if(_kbhit())
         {
-            klawisz = getch();
+            //dodanie pauzy;
+            klawisz = _getch();
+            if (klawisz == 80 || klawisz == 112)
+                klawisz = _getch();
+
             switch (klawisz)
             {
                 case 87:
