@@ -6,9 +6,9 @@
 
 int main() {
     int a,b;
-    int wysokosc = 10;
-    int szerokosc = 10;
-
+    int wysokosc;
+    int szerokosc;
+    int apple;
     int jedzeniex, jedzeniey;
     char klawisz ;
     char kierunek = 'p';                //p - prawo, l - lewo, g - gora, d - dol
@@ -19,7 +19,7 @@ int main() {
     srand(time(nullptr)); // reset generatora liczb pseudolosowych
 
     //menu kontekstowe wyboru przez gracza odpowiednich parametrów
-    std::cout<< "Podaj wymiar planszy"<<std::endl;
+    std::cout<< "Podaj wymiar planszy miedzy 10, a 25  "<<std::endl;
     std::cin >> szerokosc;
 
     //zabezpieczenie przed za malym wymiarem
@@ -29,20 +29,23 @@ int main() {
     }
 
     //zabezpieczenie przed zbyt duzym wymiarem
-    if (szerokosc > 70)
+    if (szerokosc > 25)
     {
-        szerokosc = 70;
+        szerokosc = 25;
     }
-    szerokosc = wysokosc;
+    wysokosc = szerokosc;
 
     //poziom gry
-    std::cout << "Podaj w skali 1-3 poziom trudnosci";
+    std::cout << "Podaj w skali 1-3 poziom trudnosci  ";
     std::cin >> level;
 
     if(level<1)
         level = 1;
     if (level>3)
         level = 3;
+
+    //zmienienie proporcjonalnosci poziomow
+    level+=2;
 
     int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
     //ustawienie tablicy samymi pustymi polami
@@ -90,7 +93,7 @@ int main() {
             wonsz.size(wonsz.size() + 1);
 
 
-        Sleep(1000/szerokosc / level);
+        Sleep(1000/level);
 
         //zapisanie w histori petli wspolrzednych glowy
         historiax.push_back(wonsz.head_x());
@@ -181,8 +184,9 @@ int main() {
 
     }
 
-    idzdoxy((2*szerokosc-9)/ 2, wysokosc / 2 );
-    std::cout<<"GAME OVER" <<std::endl;
+    idzdoxy((2*szerokosc-10)/ 2, wysokosc / 2 );
+    std::cout<<"GAME OVER" ;
+    idzdoxy((2*szerokosc-21)/ 2, wysokosc / 2 +1);
     std::cout<< char(186) <<"  Press ENTER to Quit";
 
     getch();
