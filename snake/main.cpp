@@ -23,7 +23,7 @@ int main() {
     std::cin >> szerokosc;
     
     std::cout<< "Wpisz symbol planszy:"<<std::endl;
-    std::cin >> symbol
+    std::cin >> Snake.symbol;
 
     //zabezpieczenie przed za malym wymiarem
     if (szerokosc < 10)
