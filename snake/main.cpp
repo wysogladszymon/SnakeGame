@@ -112,7 +112,9 @@ int main() {
         pole[wonsz.head_y()][wonsz.head_x()] = 2;
         wonsz.rysuj_glowe();
 
-
+        //instrukcja co zrobic gdy waz zje jedzenie
+        if(pole[jedzeniey][jedzeniex] == 2)
+            wonsz.size(wonsz.size() + 1);
 
 
         Sleep(1000/level);
@@ -191,20 +193,18 @@ int main() {
 
 
         //instrukcja gdy waz zje jedzenie
-        if (pole[wonsz.head_y()][wonsz.head_x()] ==1)
+        if (pole[jedzeniey][jedzeniex] == 2)
         {
-            wonsz.size(wonsz.size() + 1);
             //ustawienie wyniku
             idzdoxy(9, wysokosc + 2);
             std::cout<<wonsz.size();
 
             //losowanie nowego pola jedzenia
-            while (pole[jedzeniey][jedzeniex] != 0 )
+            while (pole[jedzeniey][jedzeniex] == 2)
             {
                 jedzeniex = losowanie(szerokosc);
                 jedzeniey = losowanie(wysokosc);
             }
-            pole[jedzeniey][jedzeniex] = 1;
             idzdoxy(jedzeniex * 2 + 1 , jedzeniey+1);
             std::cout<<'x';
 
