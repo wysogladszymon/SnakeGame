@@ -25,8 +25,8 @@ void Snake::usun_ogon() {
     std::cout << "  ";
 }
 
-void Snake::rysuj_glowe() {
+void Snake::rysuj_glowe(char symbol) {
     idzdoxy(x_ * 2 + 1, y_ + 1);
-    std::cout << this->pole_;
+    std::cout << symbol;
 }
 
