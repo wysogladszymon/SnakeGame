@@ -60,7 +60,7 @@ int main() {
             wonsz.set_size(wonsz.get_size() + 1);
 
 
-        Sleep(200);
+        Sleep(1000/level);
 
         //zapisanie w histori petli wspolrzednych glowy
         historiax.push_back(wonsz.get_head_X());
