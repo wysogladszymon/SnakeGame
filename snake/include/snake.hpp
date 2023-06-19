@@ -33,8 +33,8 @@ public:
     int head_y() const {return y_;};
     void tail_x(int x) {x_k = x;};
     void tail_y(int y) {y_k = y;};
-    int tail_x() const {return x_k;};
-    int tail_y() const {return y_k;};
+    int get_tail_X() const {return x_k;};
+    int get_tail_Y() const {return y_k;};
     void usun_ogon();
     void rysuj_glowe();
     void head_both(int x, int y) { x_ = x; y_ = y;};
@@ -44,7 +44,7 @@ public:
 
 private:
     int dlugosc_, x_, y_ ,x_k ,y_k;
-    char pole_;  
+    char pole_;
 };
 
 #endif

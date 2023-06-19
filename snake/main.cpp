@@ -71,7 +71,7 @@ int main() {
         wonsz.tail_x(historiax[historiax.size() - wonsz.size()]);
         wonsz.tail_y(historiay[historiay.size() - wonsz.size()]);
         wonsz.usun_ogon();
-        pole[wonsz.tail_y()][wonsz.tail_x()] = 0;
+        pole[wonsz.get_tail_Y()][wonsz.get_tail_X()] = 0;
 
 
         //uzaeleznienie kierunku w zaleznosci od przycisku
