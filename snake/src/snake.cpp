@@ -30,6 +30,6 @@ void Snake::usun_ogon()
 void Snake::rysuj_glowe()
 {
     idzdoxy(x_ * 2 + 1, y_ + 1);
-    std::cout<<"0";
+    std::cout<<this->pole_;
 }
 
