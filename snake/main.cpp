@@ -123,19 +123,21 @@ int main() {
         wonsz.set_head_Y((wonsz.get_head_Y() + wysokosc) % wysokosc);
 
 
-        //instrukcja gdy waz zje jedzenie
-        if (pole[jedzeniey][jedzeniex] == 2) {
+               //instrukcja gdy waz zje jedzenie
+        if (pole[jedzeniey][jedzeniex] == 2)
+        {
             //ustawienie wyniku
             idzdoxy(9, wysokosc + 2);
-            std::cout << wonsz.get_size();
+            std::cout<<wonsz.size();
 
             //losowanie nowego pola jedzenia
-            while (pole[jedzeniey][jedzeniex] == 2) {
+            while (pole[jedzeniey][jedzeniex] == 2)
+            {
                 jedzeniex = losowanie(szerokosc);
                 jedzeniey = losowanie(wysokosc);
             }
-            idzdoxy(jedzeniex * 2 + 1, jedzeniey + 1);
-            std::cout << 'x';
+            idzdoxy(jedzeniex * 2 + 1 , jedzeniey+1);
+            std::cout<<'x';
 
         }
 
