@@ -5,7 +5,7 @@
 
 
 int main() {
-    int a,b;
+    int a,b,c;
     int wysokosc;
     int szerokosc;
     int apple;
@@ -19,7 +19,7 @@ int main() {
     srand(time(nullptr)); // reset generatora liczb pseudolosowych
 
     //menu kontekstowe wyboru przez gracza odpowiednich parametrów
-    std::cout<< "Podaj wymiar planszy miedzy 10, a 25  "<<std::endl;
+    std::cout<< "Podaj wymiar planszy miedzy 10, a 25:  "<<std::endl;
     std::cin >> szerokosc;
 
     //zabezpieczenie przed za malym wymiarem
@@ -36,9 +36,20 @@ int main() {
     wysokosc = szerokosc;
 
     //poziom gry
-    std::cout << "Podaj w skali 1-3 poziom trudnosci  ";
+    std::cout << "Podaj w skali 1-3 poziom trudnosci:  ";
     std::cin >> level;
 
+    //podanie liczby jablek
+    std::cout<< "Podaj liczbę jedzenia (1-5):  "<<std::endl;
+    std::cin>> apple;
+
+    //instrukcje dla zle podanych parametrow
+    if(apple < 1)
+        apple = 1;
+    if(apple>5)
+        apple = 5;
+
+    //instrukcje dla zle podanych parametrow
     if(level<1)
         level = 1;
     if (level>3)
@@ -47,39 +58,52 @@ int main() {
     //zmienienie proporcjonalnosci poziomow
     level+=2;
 
+    //reset gry
+    restart:
+
+    a = losowanie(szerokosc);
+    b = losowanie(wysokosc);
+
+
+
+    // inicjalizacja weza
+    Snake wonsz(1,a,b,a,b);
+
+
+    //oczyszczenie ekranu
+    system("Cls");
+
     int pole[wysokosc][szerokosc];      // 0 - puste pole , 1 - jedzenie, 2 - waz
     //ustawienie tablicy samymi pustymi polami
     for (int i = 0; i < wysokosc;i++ )
         for(int j = 0; j < szerokosc ; j++)
             pole[i][j] = 0;
 
-
-    //oczyszczenie ekranu
-    system("Cls");
-
     Plansza plansza(szerokosc ,wysokosc );
     plansza.rysuj();
 
-    a = losowanie(szerokosc);
-    b = losowanie(wysokosc);
-
-    // inicjalizacja
-    Snake wonsz(1,a,b,a,b);
 
 
+    c = 0;
     //losowanie poczatkowego pola jedzenia
-    do
+    while (c < apple)
     {
-        jedzeniex = losowanie(szerokosc);
-        jedzeniey = losowanie(wysokosc);
-    }while (jedzeniex == a && jedzeniey == b);
+        do
+        {
+            jedzeniex = losowanie(szerokosc);
+            jedzeniey = losowanie(wysokosc);
+        }while (jedzeniex == a && jedzeniey == b && pole[jedzeniey][jedzeniex] != 1);
+        pole[jedzeniey][jedzeniex] = 1;
+        idzdoxy(jedzeniex*2 + 1, jedzeniey+1);
+        std::cout<<'x';
+        c++;
+    }
 
-    idzdoxy(jedzeniex*2 + 1, jedzeniey+1);
-    std::cout<<'x';
 
     //narysowanie wyniku
     idzdoxy(2, wysokosc + 2);
     std::cout<<"SCORE: "<< wonsz.size();
+
 
     //petla gry
     while (pole[wonsz.head_y()][wonsz.head_x()] != 2 )
@@ -109,10 +133,15 @@ int main() {
         //uzaeleznienie kierunku w zaleznosci od przycisku
         if(_kbhit())
         {
-            //dodanie pauzy;
+            //dodanie pauzy na p
             klawisz = _getch();
             if (klawisz == 80 || klawisz == 112)
                 klawisz = _getch();
+            //reset na r
+            if (klawisz == 82 || klawisz == 114)
+            {
+                goto restart;
+            }
 
             switch (klawisz)
             {
