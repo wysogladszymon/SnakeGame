@@ -139,7 +139,6 @@ int main() {
 
         }
 
-
     }
 
     idzdoxy((2 * szerokosc - 9) / 2, wysokosc / 2);
