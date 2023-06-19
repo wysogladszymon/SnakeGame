@@ -151,6 +151,6 @@ int main() {
     idzdoxy((2*szerokosc-9)/ 2, wysokosc / 2 );
     std::cout<<"GAME OVER" <<std::endl;
     std::cout<< char(186) <<"  Press ENTER to Quit";
-c
+
     getch();
 }
