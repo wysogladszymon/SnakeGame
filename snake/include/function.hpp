@@ -6,12 +6,9 @@
 #include <ctime>
 
 
-void idzdoxy(int , int );
+void idzdoxy(int, int);
 
 int losowanie(int gora = 10, int dol = 0);
-
-
-
 
 
 #endif //SNAKE_FUNCTION_HPP
