@@ -38,6 +38,10 @@ public:
     void usun_ogon();
     void rysuj_glowe();
     void head_both(int x, int y) { x_ = x; y_ = y;};
+
+    void set_pole(char pole) {pole_=pole;};
+
+
 private:
     int dlugosc_, x_, y_ ,x_k ,y_k;
     char pole_;  
