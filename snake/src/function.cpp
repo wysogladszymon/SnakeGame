@@ -1,8 +1,7 @@
 #include "../include/function.hpp"
 
 
-void idzdoxy(int x, int y)
-{
+void idzdoxy(int x, int y) {
     HANDLE hCon;
     COORD dwPos;
 
@@ -13,8 +12,7 @@ void idzdoxy(int x, int y)
     SetConsoleCursorPosition(hCon, dwPos);
 }
 
-int losowanie(int gora , int dol)
-{
-    return std::rand()%(gora - dol) + dol;
+int losowanie(int gora, int dol) {
+    return std::rand() % (gora - dol) + dol;
 }
 
