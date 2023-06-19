@@ -68,8 +68,8 @@ int main() {
         historiay.push_back(wonsz.head_y());
 
         //wpisanie i usuniecie ogona
-        wonsz.tail_x(historiax[historiax.size() - wonsz.size()]);
-        wonsz.tail_y(historiay[historiay.size() - wonsz.size()]);
+        wonsz.set_tail_X(historiax[historiax.size() - wonsz.size()]);
+        wonsz.set_tail_Y(historiay[historiay.size() - wonsz.size()]);
         wonsz.usun_ogon();
         pole[wonsz.get_tail_Y()][wonsz.get_tail_X()] = 0;
 

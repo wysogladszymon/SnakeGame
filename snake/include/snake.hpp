@@ -31,8 +31,8 @@ public:
     void head_y(int y) {y_ = y;};
     int head_x() const {return x_;};
     int head_y() const {return y_;};
-    void tail_x(int x) {x_k = x;};
-    void tail_y(int y) {y_k = y;};
+    void set_tail_X(int x) { x_k = x;};
+    void set_tail_Y(int y) { y_k = y;};
     int get_tail_X() const {return x_k;};
     int get_tail_Y() const {return y_k;};
     void usun_ogon();
