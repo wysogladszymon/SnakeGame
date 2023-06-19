@@ -29,8 +29,8 @@ public:
     int size() const {return dlugosc_;};
     void head_x(int x) {x_ = x;};
     void head_y(int y) {y_ = y;};
-    int head_x() const {return x_;};
-    int head_y() const {return y_;};
+    int get_head_X() const {return x_;};
+    int get_head_Y() const {return y_;};
     void set_tail_X(int x) { x_k = x;};
     void set_tail_Y(int y) { y_k = y;};
     int get_tail_X() const {return x_k;};

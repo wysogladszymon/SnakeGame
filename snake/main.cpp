@@ -50,10 +50,10 @@ int main() {
     std::cout<<"SCORE: "<< wonsz.size();
 
     //petla gry
-    while (pole[wonsz.head_y()][wonsz.head_x()] != 2 )
+    while (pole[wonsz.get_head_Y()][wonsz.get_head_X()] != 2 )
     {
     //narysowanie glowy oraz ustawienie pola w tablicy, aby oznaczyc lokalizacje weza
-        pole[wonsz.head_y()][wonsz.head_x()] = 2;
+        pole[wonsz.get_head_Y()][wonsz.get_head_X()] = 2;
         wonsz.rysuj_glowe();
 
         //instrukcja co zrobic gdy waz zje jedzenie
@@ -64,8 +64,8 @@ int main() {
         Sleep(200);
 
         //zapisanie w histori petli wspolrzednych glowy
-        historiax.push_back(wonsz.head_x());
-        historiay.push_back(wonsz.head_y());
+        historiax.push_back(wonsz.get_head_X());
+        historiay.push_back(wonsz.get_head_Y());
 
         //wpisanie i usuniecie ogona
         wonsz.set_tail_X(historiax[historiax.size() - wonsz.size()]);
@@ -109,22 +109,22 @@ int main() {
         switch(kierunek)
         {
             case 'g':
-                wonsz.head_both(wonsz.head_x(), wonsz.head_y() - 1);
+                wonsz.head_both(wonsz.get_head_X(), wonsz.get_head_Y() - 1);
                 break;
             case 'd':
-                wonsz.head_both(wonsz.head_x(), wonsz.head_y() +1);
+                wonsz.head_both(wonsz.get_head_X(), wonsz.get_head_Y() + 1);
                 break;
             case 'p':
-                wonsz.head_both(wonsz.head_x()+1, wonsz.head_y());
+                wonsz.head_both(wonsz.get_head_X() + 1, wonsz.get_head_Y());
                 break;
             case 'l':
-                wonsz.head_both(wonsz.head_x()-1, wonsz.head_y());
+                wonsz.head_both(wonsz.get_head_X() - 1, wonsz.get_head_Y());
                 break;
         }
 
         //ustawienie wspolrzednych weza, aby miescily sie w polu gry
-        wonsz.head_x((wonsz.head_x()+szerokosc)%szerokosc);
-        wonsz.head_y((wonsz.head_y()+wysokosc)%wysokosc );
+        wonsz.head_x((wonsz.get_head_X() + szerokosc) % szerokosc);
+        wonsz.head_y((wonsz.get_head_Y() + wysokosc) % wysokosc );
 
 
         //instrukcja gdy waz zje jedzenie
