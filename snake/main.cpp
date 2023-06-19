@@ -57,7 +57,7 @@ int main() {
 
         //instrukcja co zrobic gdy waz zje jedzenie
         if (pole[jedzeniey][jedzeniex] == 2)
-            wonsz.set_size(wonsz.get_size() + 1);
+           wonsz.size(wonsz.size() + 1);
 
 
         Sleep(1000/level);
